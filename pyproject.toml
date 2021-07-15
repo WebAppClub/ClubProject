@@ -1,13 +1,14 @@
 
 [tool.pyflow]
-name = "Club"
-py_version = "3.9"
+name = ""
+py_version = "3.8"
 version = "0.1.0"
-authors = ["HEKUCHAN <Heitorhirose@gmail.com>"]
 
 [tool.pyflow.scripts]
 
 [tool.pyflow.dependencies]
+django = "^3.2.5"
+black = "^21.6b0"
 
 [tool.pyflow.dev-dependencies]
 
