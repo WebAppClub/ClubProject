@@ -1,5 +1,10 @@
 # 環境構築方法
 
+### Pyflowをインストール
+```bash
+brew install pyflow
+```
+
 ### ライブラリーをインストールする
 ```bash
 pyflow package
