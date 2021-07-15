@@ -1,0 +1,13 @@
+
+[tool.pyflow]
+name = "Club"
+py_version = "3.9"
+version = "0.1.0"
+authors = ["HEKUCHAN <Heitorhirose@gmail.com>"]
+
+[tool.pyflow.scripts]
+
+[tool.pyflow.dependencies]
+
+[tool.pyflow.dev-dependencies]
+
