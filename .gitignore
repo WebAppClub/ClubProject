@@ -7,6 +7,6 @@ __pypackages__/
 *.pyc
 *~
 */.mypy_cache/
-
+.DS_Store
 
 # Project ignores
