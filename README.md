@@ -9,6 +9,7 @@ brew install pyflow
 ```bash
 pyflow package
 ```
+その後に1を選ぶ
 
 
 ### djangoサーバーを起動
