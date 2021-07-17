@@ -1,15 +1,8 @@
 [[package]]
-id = 11
-name = "appdirs"
-version = "1.4.4"
-source = "pypi+https://pypi.org/pypi/appdirs/1.4.4/json"
-dependencies = []
-
-[[package]]
-id = 9
-name = "regex"
-version = "2020.10.23"
-source = "pypi+https://pypi.org/pypi/regex/2020.10.23/json"
+id = 2
+name = "sqlparse"
+version = "0.4.1"
+source = "pypi+https://pypi.org/pypi/sqlparse/0.4.1/json"
 dependencies = []
 
 [[package]]
@@ -20,10 +13,10 @@ source = "pypi+https://pypi.org/pypi/black/21.6b0/json"
 dependencies = ["appdirs 1.4.4 pypi+https://pypi.org/pypi/appdirs/1.4.4/json", "toml 0.10.2 pypi+https://pypi.org/pypi/toml/0.10.2/json", "mypy-extensions 0.4.3 pypi+https://pypi.org/pypi/mypy-extensions/0.4.3/json", "regex 2020.10.23 pypi+https://pypi.org/pypi/regex/2020.10.23/json", "typed-ast 1.4.3 pypi+https://pypi.org/pypi/typed-ast/1.4.3/json", "pathspec 0.8.1 pypi+https://pypi.org/pypi/pathspec/0.8.1/json", "click 8.0.1 pypi+https://pypi.org/pypi/click/8.0.1/json"]
 
 [[package]]
-id = 7
-name = "mypy-extensions"
-version = "0.4.3"
-source = "pypi+https://pypi.org/pypi/mypy-extensions/0.4.3/json"
+id = 4
+name = "asgiref"
+version = "3.4.1"
+source = "pypi+https://pypi.org/pypi/asgiref/3.4.1/json"
 dependencies = []
 
 [[package]]
@@ -34,17 +27,10 @@ source = "pypi+https://pypi.org/pypi/pathspec/0.8.1/json"
 dependencies = []
 
 [[package]]
-id = 1
-name = "Django"
-version = "3.2.5"
-source = "pypi+https://pypi.org/pypi/Django/3.2.5/json"
-dependencies = ["sqlparse 0.4.1 pypi+https://pypi.org/pypi/sqlparse/0.4.1/json", "asgiref 3.4.1 pypi+https://pypi.org/pypi/asgiref/3.4.1/json", "pytz 2017.2 pypi+https://pypi.org/pypi/pytz/2017.2/json"]
-
-[[package]]
-id = 2
-name = "sqlparse"
-version = "0.4.1"
-source = "pypi+https://pypi.org/pypi/sqlparse/0.4.1/json"
+id = 7
+name = "mypy-extensions"
+version = "0.4.3"
+source = "pypi+https://pypi.org/pypi/mypy-extensions/0.4.3/json"
 dependencies = []
 
 [[package]]
@@ -55,10 +41,17 @@ source = "pypi+https://pypi.org/pypi/typed-ast/1.4.3/json"
 dependencies = []
 
 [[package]]
-id = 10
-name = "toml"
-version = "0.10.2"
-source = "pypi+https://pypi.org/pypi/toml/0.10.2/json"
+id = 9
+name = "regex"
+version = "2020.10.23"
+source = "pypi+https://pypi.org/pypi/regex/2020.10.23/json"
+dependencies = []
+
+[[package]]
+id = 3
+name = "pytz"
+version = "2017.2"
+source = "pypi+https://pypi.org/pypi/pytz/2017.2/json"
 dependencies = []
 
 [[package]]
@@ -69,17 +62,24 @@ source = "pypi+https://pypi.org/pypi/click/8.0.1/json"
 dependencies = []
 
 [[package]]
-id = 4
-name = "asgiref"
-version = "3.4.1"
-source = "pypi+https://pypi.org/pypi/asgiref/3.4.1/json"
+id = 10
+name = "toml"
+version = "0.10.2"
+source = "pypi+https://pypi.org/pypi/toml/0.10.2/json"
 dependencies = []
 
 [[package]]
-id = 3
-name = "pytz"
-version = "2017.2"
-source = "pypi+https://pypi.org/pypi/pytz/2017.2/json"
+id = 1
+name = "Django"
+version = "3.2.5"
+source = "pypi+https://pypi.org/pypi/Django/3.2.5/json"
+dependencies = ["sqlparse 0.4.1 pypi+https://pypi.org/pypi/sqlparse/0.4.1/json", "asgiref 3.4.1 pypi+https://pypi.org/pypi/asgiref/3.4.1/json", "pytz 2017.2 pypi+https://pypi.org/pypi/pytz/2017.2/json"]
+
+[[package]]
+id = 11
+name = "appdirs"
+version = "1.4.4"
+source = "pypi+https://pypi.org/pypi/appdirs/1.4.4/json"
 dependencies = []
 
 [metadata]
