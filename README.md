@@ -1,6 +1,10 @@
 #基本的な開発ルール
 
 ### Pythonファイルは必ずBlackを通す
+```bash
+$ pyflow black PythonファイルへのPath
+```
+
 ### Pythonファイル内で新しく関数を作った場合必ずその帰り値の値を書く
 
 ```python
