@@ -10,7 +10,15 @@ def double_number(double_num) -> int:
 
 ### Pythonファイル内で新しく関数を作った場合必ずその関数の説明文を書く
 
+```python
+def test():
+  """
+  testと表示させる関数
+  """
+  print("test")
+
 # Django環境構築方法
+```
 
 ### Pyflowをインストール
 ```bash
