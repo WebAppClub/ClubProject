@@ -22,3 +22,8 @@ pyflow manage.py runserver
 ```bash
 pyflow black PythonファイルへのPath
 ```
+
+### Python or Djangoのコマンドを使う時
+```bash
+pyflow そのコマンド
+```
