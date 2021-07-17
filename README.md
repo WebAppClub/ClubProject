@@ -1,3 +1,15 @@
+#基本的な開発ルール
+
+### Pythonファイルは必ずBlackを通す
+### Pythonファイル内で新しく関数を作った場合必ずその帰り値の値を書く
+
+```python
+def double_number(double_num) -> int:
+  return double_num * 2
+```
+
+### Pythonファイル内で新しく関数を作った場合必ずその関数の説明文を書く
+
 # Django環境構築方法
 
 ### Pyflowをインストール
