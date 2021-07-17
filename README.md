@@ -16,9 +16,9 @@ def test():
   testと表示させる関数
   """
   print("test")
+```
 
 # Django環境構築方法
-```
 
 ### Pyflowをインストール
 ```bash
