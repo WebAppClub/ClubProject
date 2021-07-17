@@ -1,35 +1,34 @@
-# frontend
+# Nuxt.jsとVuetify.jsインストール
+## 環境構築方法
 
-## Build Setup
+### 開発を始める方法
+Node.jsをインストールしといてください。
+やり方は下を参照しください
+わからなかったらサークル責任者まで
+https://github.com/hokaccha/nodebrew
 
+### yarnをインストール
 ```bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn dev
-
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
-$ yarn generate
+$ npm install --global yarn
 ```
 
-## Build Setup
-
+### 依存関係をインストールする
 ```bash
-# 依存関係をインストールする
 $ yarn install
+```
 
-# 0.0.0.0:3333でホットリロードを提供
+### 0.0.0.0:3333でホットリロードを提供
+```bash
 $ yarn dev
+```
 
-# 本番用にビルドしてサーバーを立ち上げる
+### 本番用にビルドしてサーバーを立ち上げる
+```bash
 $ yarn build
 $ yarn start
+```
 
-# 静的プロジェクトの生成
+### 静的プロジェクトの生成
+```bash
 $ yarn generate
 ```
