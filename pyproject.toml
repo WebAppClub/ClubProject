@@ -9,6 +9,9 @@ version = "0.1.0"
 [tool.pyflow.dependencies]
 django = "^3.2.5"
 black = "^21.6b0"
+django-rest-framework = "^0.1.0"
+django-cors-headers = "^3.7.0"
+numpy = "^1.21.0"
 
 [tool.pyflow.dev-dependencies]
 
