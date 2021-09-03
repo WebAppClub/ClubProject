@@ -12,7 +12,7 @@ https://github.com/hokaccha/nodebrew
 $ npm install --global yarn
 ```
 
-### 依存関係をインストールする
+### パッケージをインストールする
 ```bash
 $ yarn install
 ```
