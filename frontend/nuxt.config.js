@@ -6,7 +6,7 @@ export default {
     titleTemplate: '%s - frontend',
     title: 'frontend',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'ja'
     },
     meta: [
       { charset: 'utf-8' },
@@ -15,7 +15,6 @@ export default {
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
 
@@ -44,10 +43,61 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth',
+    '@nuxtjs/toast',
+    ['nuxt-log', {
+      // optional : defaults to true if not specified
+      isEnabled: true,
+      // required ['debug', 'info', 'warn', 'error', 'fatal']
+      logLevel: 'debug',
+      // optional : defaults to false if not specified
+      stringifyArguments: false,
+      // optional : defaults to false if not specified
+      showLogLevel: false,
+      // optional : defaults to false if not specified
+      showMethodName: false,
+      // optional : defaults to '|' if not specified
+      separator: '|',
+      // optional : defaults to false if not specified
+      showConsoleColors: false
+    }]
   ],
+  auth: {
+    redirect: {
+      login: '/login',
+      callback: false,
+      home: '/login',
+      logout: false,
+    },
+    strategies: {
+      local: {
+        scheme: 'refresh',
+        token: {
+          type: "Bearer",
+          required: true,
+          property: 'token',
+          maxAge: 60 * 60 * 24
+        },
+        endpoints: {
+          login: { url: '/api/v1/jwt/', method: 'post' },
+          user: {
+            url: '/api/v1/jwt/me/', method: 'get', propertyName: 'user',
+          },
+          refresh: false,
+          logout: false
+        }
+      }
+    },
+    server: {
+      port: 8000
+    }
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: "http://127.0.0.1:8000/"
+  },
+  
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
