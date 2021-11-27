@@ -1,5 +1,12 @@
 # WebAplicationClub
 
+## Django Admin User
+
+```
+email: TanakaTanao@club.hekuta.com
+password: TESTAREA
+```
+
 ## 環境構築方法
 
 ## Docker
