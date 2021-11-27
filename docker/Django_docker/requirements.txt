@@ -1,7 +1,0 @@
-django==3.2.8
-djangorestframework==3.12.4
-django-cors-headers===3.10.0
-colorama==0.4.4
-django-environ==0.7.0
-djangorestframework-jwt==1.11.0
-uwsgi==2.0.20
