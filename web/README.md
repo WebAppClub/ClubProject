@@ -1,3 +1,19 @@
+# Nuxt.js
+
+node.jsとyarnをインストールしといてください。
+その後に
+
+```bash
+yarn install
+```
+
+起動するには
+
+```bash
+yarn dev
+```
+
+
 # web
 
 ## Build Setup

@@ -1,0 +1,20 @@
+
+[tool.pyflow]
+name = ""
+py_version = "3.9"
+version = "0.1.0"
+
+[tool.pyflow.scripts]
+
+[tool.pyflow.dependencies]
+django-cors-headers = "3.7.0"
+django-cleanup = "5.2.0"
+Django = "3.2.5"
+django-environ = "0.8.1"
+djangorestframework = "3.12.2"
+djangorestframework-simplejwt = "4.6.0"
+mysqlclient = "2.0.3"
+Pillow = "8.4.0"
+
+[tool.pyflow.dev-dependencies]
+
