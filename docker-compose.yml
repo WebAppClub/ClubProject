@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  api:
+    container_name: vantan_store_api
+    build: ./Docker/python
+    command: python3 manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./api/:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    container_name: vantan_store_db
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: vantan_store_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    volumes:
+      - ./sql/mysql:/var/lib/mysql
+      - ./sql/sql:/docker-entrypoint-initdb.d
+      - ./sql/sqlcnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - 3306:3306
+
+  web:
+      container_name: vantan_store_web
+      build: ./Docker/nuxt
+      ports:
+        - 3000:3000
+      volumes:
+        - ./web/:/app
+        - ./web/node-modules:/usr/src/app/node_modules
+      tty: true
+      working_dir: /app
+      command: yarn dev
