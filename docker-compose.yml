@@ -1,17 +1,6 @@
 version: '3'
 
 services:
-  api:
-    container_name: vantan_store_api
-    build: ./Docker/python
-    command: uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
-    volumes:
-      - ./api/:/code
-    ports:
-      - "8000:8000"
-    depends_on:
-      - db
-
   db:
     container_name: vantan_store_db
     image: mysql:8.0
@@ -26,6 +15,17 @@ services:
       - ./Docker/sql/sqlcnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306
+
+  api:
+    container_name: vantan_store_api
+    build: ./Docker/python
+    command: uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
+    volumes:
+      - ./api/:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
 
   web:
       container_name: vantan_store_web
