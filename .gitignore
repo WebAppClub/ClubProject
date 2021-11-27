@@ -227,3 +227,6 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+Docker/sql/mysql
+Docker/sql/mysql/*

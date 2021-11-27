@@ -21,9 +21,9 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     volumes:
-      - ./sql/mysql:/var/lib/mysql
-      - ./sql/sql:/docker-entrypoint-initdb.d
-      - ./sql/sqlcnf:/etc/mysql/conf.d/my.cnf
+      - ./Docker/sql/mysql:/var/lib/mysql
+      - ./Docker/sql/sql:/docker-entrypoint-initdb.d
+      - ./Docker/sql/sqlcnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306
 
