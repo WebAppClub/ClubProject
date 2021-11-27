@@ -9,6 +9,9 @@ docker-compose build
 docker-compose up -d
 ```
 
+
+# Django
+
 ## pipenv
 
 pipenvではmysqlの設定が必要になる。
@@ -51,4 +54,20 @@ pyflow manage.py runserver
 
 ```bash
 brew install pyflow
+```
+
+
+# Nuxt.js
+
+node.jsとyarnをインストールしといてください。
+その後に
+
+```bash
+yarn install
+```
+
+起動するには
+
+```bash
+yarn dev
 ```
