@@ -27,7 +27,7 @@ services:
       bash -c "python manage.py wait_for_db &&
       python manage.py makemigrations &&
       python manage.py migrate &&
-      python manage.py loaddata ./config/models/init.json &&
+      sh ./config/models/init_data.sh &&
       uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768"
 
     volumes:
