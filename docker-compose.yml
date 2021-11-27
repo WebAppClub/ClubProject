@@ -31,6 +31,10 @@ services:
   web:
       container_name: vantan_store_web
       build: ./Docker/nuxt
+      command: >
+        bash -c "yarn install &&
+        yarn dev"
+
       ports:
         - 3000:3000
       volumes:
@@ -38,7 +42,6 @@ services:
         - ./web/node_modules:/usr/src/app/node_modules
       tty: true
       working_dir: /app
-      command: yarn dev
   
   nginx:
     image: nginx:1.13

@@ -4,6 +4,9 @@
 
 ## Docker
 
+最初は起動するのに時間かかります、、
+待ってあげてください。。
+
 ```bash
 docker-compose build
 docker-compose up -d
