@@ -1,6 +1,11 @@
 import colors from 'vuetify/es5/util/colors'
 
 export default {
+  server: {
+    port: 3000,
+    host: '0.0.0.0',
+  },
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - web',
@@ -26,6 +31,7 @@ export default {
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
+  telemetry: false,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
