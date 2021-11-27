@@ -6,9 +6,10 @@ services:
     image: mysql:8.0
     environment:
       MYSQL_DATABASE: vantan_store_db
-      MYSQL_USER: root
+      MYSQL_USER: user
       MYSQL_PASSWORD: password
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_ROOT_PASSWORD: P@ssw0rd
+      TZ: "Asia/Tokyo"
     volumes:
       - ./Docker/sql/mysql:/var/lib/mysql
       - ./Docker/sql/sql:/docker-entrypoint-initdb.d
@@ -34,7 +35,7 @@ services:
         - 3000:3000
       volumes:
         - ./web/:/app
-        - ./web/node-modules:/usr/src/app/node_modules
+        - ./web/node_modules:/usr/src/app/node_modules
       tty: true
       working_dir: /app
       command: yarn dev
