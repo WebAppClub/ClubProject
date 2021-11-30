@@ -1,0 +1,23 @@
+version: 2
+jobs:
+  build:
+    machine:
+      image: circleci/classic:edge
+    steps:
+    # Djangoのテストを実行
+      - checkout
+      - run:
+          name: make env file
+          command: |
+            echo DEBUG=${DEBUG} > src/.env
+            echo SECRET_KEY=${SECRET_KEY} >> src/.env
+            echo ALLOWED_HOSTS=${ALLOWED_HOSTS} >> src/.env
+      - run:
+          name: docker-compose up
+          command: docker-compose up -d
+      - run:
+          name: docker ps
+          command: docker ps
+      - run:
+          name: docker-compose down
+          command: docker-compose down
