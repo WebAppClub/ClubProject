@@ -73,12 +73,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "mysql.connector.django",
+        "ENGINE": env.get_value("DB_ENGINE", str),
         "NAME": "vantan_store_db",
-        "USER": "user",
-        "PASSWORD": "password",
-        "PORT": "3306",
-        "HOST": "db",
+        "USER": env.get_value("DB_USER", str),
+        "PASSWORD": env.get_value("DB_PASSWROD", str),
+        "PORT": env.get_value("DB_PORT", str),
+        "HOST": env.get_value("DB_HOST", str),
     }
 }
 
