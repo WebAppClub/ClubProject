@@ -9,9 +9,9 @@ jobs:
       - run:
           name: make env file
           command: |
-            echo DEBUG=${DEBUG} > src/.env
-            echo SECRET_KEY=${SECRET_KEY} >> src/.env
-            echo ALLOWED_HOSTS=${ALLOWED_HOSTS} >> src/.env
+            echo DEBUG=${DEBUG} > api/.env
+            echo SECRET_KEY=${SECRET_KEY} >> api/.env
+            echo ALLOWED_HOSTS=${ALLOWED_HOSTS} >> api/.env
       - run:
           name: docker-compose up
           command: docker-compose up -d
