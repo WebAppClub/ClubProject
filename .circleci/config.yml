@@ -2,7 +2,6 @@ version: 2.1
 
 jobs:
   api:
-    working_directory: ~/api
     docker:
       - image: circleci/python:3.9.6-buster
         environment:
@@ -41,13 +40,15 @@ jobs:
           key: v1-dependencies-{{ checksum "./Docker/python/requirements.txt" }}
       - run:
           name: Wait for db.
-          command: ls -al
+          working_directory: api
+          command: python manage.py wait_for_db
       - run:
           name: Make migrations.
+          working_directory: api
           command: python manage.py makemigrations
       - run:
           name: Migrate
-          working_directory: ~/api
+          working_directory: api
           command: python manage.py migrate
       - run:
           name: init data in database.
