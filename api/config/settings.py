@@ -88,7 +88,7 @@ DATABASES = {
         "ENGINE": os.getenv("DB_ENGINE", env.get_value("DB_ENGINE", str)),
         "NAME": "vantan_store_db",
         "USER": os.getenv("DB_USER", env.get_value("DB_USER", str)),
-        "PASSWORD": os.getenv("DB_PASSWROD", env.get_value("DB_PASSWROD", str)),
+        "PASSWORD": os.getenv("DB_PASSWORD", env.get_value("DB_PASSWORD", str)),
         "PORT": os.getenv("DB_PORT", env.get_value("DB_PORT", str)),
         "HOST": os.getenv("DB_HOST", env.get_value("DB_HOST", str)),
     }
