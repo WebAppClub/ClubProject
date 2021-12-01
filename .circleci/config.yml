@@ -95,10 +95,10 @@ jobs:
           key: v1-npm-deps-{{ checksum "./web/yarn.lock" }}
 
 workflows:
-  nightly:
+  build:
     triggers:
       - schedule:
-          cron: "0 15 * * *"
+          cron: "0 0 * * *"
           filters:
             branches:
               only:
