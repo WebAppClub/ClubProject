@@ -66,7 +66,7 @@ jobs:
       - checkout
       - restore_cache:
           name: Restore caches.
-          key: v1-npm-deps-{{ checksum "./web/yarn.lock" }}
+          key: v1-npm-deps-{{ checksum "./web/node_modules/*" }}
       - run:
           name: yarn install
           working_directory: web
@@ -75,12 +75,16 @@ jobs:
           name: yarn build
           working_directory: web
           command: yarn build
-
+      - run:
+          name: yarn start
+          working_directory: web
+          background: true
+          command: yarn start
       - save_cache:
           name: Save caches.
           paths:
             - ./caches
-          key: v1-npm-deps-{{ checksum "./web/node_modules" }}
+          key: v1-npm-deps-{{ checksum "./web/node_modules/*" }}
 
 workflows:
   build:
