@@ -8,18 +8,19 @@ jobs:
           SECRET_KEY: ThisIsSpecialSecurityKey
           DEBUG: "False"
           ALLOWED_HOSTS: localhost,django,127.0.0.1
-          DB_USER: root
+          DB_USER: user
           DB_PASSWORD: password
           DB_PORT: 3306
           DB_HOST: 127.0.0.1
           DB_ENGINE: mysql.connector.django
       - image: circleci/mysql:8.0.4
         environment:
-          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_ROOT_PASSWORD: P@ssw0rd
           MYSQL_DATABASE: vantan_store_db
           MYSQL_HOST: 127.0.0.1
-          MYSQL_USER: root
+          MYSQL_USER: user
           MYSQL_PASSWORD: password
+          MYSQL_PORT: 3306
     steps:
       - checkout
       - restore_cache:
@@ -36,7 +37,7 @@ jobs:
           name: Save caches.
           paths:
             - ./caches
-          key: v1-dependencies-{{ checksum "checksum "./Docker/python/requirements.txt" }}
+          key: v1-dependencies-{{ checksum "./Docker/python/requirements.txt" }}
       - run:
           name: Wait for db.
           command: python manage.py wait_for_db
