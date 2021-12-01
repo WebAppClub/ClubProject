@@ -59,7 +59,7 @@ jobs:
           name: init data in database.
           command: |
             . venv/bin/activate
-            sh ./api/config/models/init_data.sh
+            cd api && sh ./config/models/init_data.sh
       - run:
           name: open Server
           background: true
