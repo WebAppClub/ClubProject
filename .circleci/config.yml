@@ -36,7 +36,7 @@ jobs:
       - save_cache:
           name: Save caches.
           paths:
-            - ./caches
+            - ./Docker/python/requirements.txt
           key: v1-dependencies-{{ checksum "./Docker/python/requirements.txt" }}
       - run:
           name: Wait for db.
@@ -57,12 +57,34 @@ jobs:
       - run:
           name: open Server
           background: true
-          command: uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768 && uwsgi --stop
+          command: uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
 
+  web:
+    docker:
+      - image: cimg/node:16.13.0
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore_cache
+          key: v1-npm-deps-{{ checksum "./web/yarn.lock" }}
+      - run:
+          name: yarn install
+          working_directory: web
+          command: yarn install
+      - run:
+          name: yarn build
+          working_directory: web
+          command: yarn build
+
+      - save_cache:
+          key: v1-npm-deps-{{ checksum "./web/node_modules" }}
+          paths:
+            - ./web/node_module
 workflows:
   build:
     jobs:
       - api
+      - web
 
 
 
