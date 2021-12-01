@@ -96,14 +96,16 @@ jobs:
 
 workflows:
   build:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
+    jobs:
+      - api:
           filters:
             branches:
               only:
                 - main
                 - develop
-    jobs:
-      - api
-      - web
+      - web:
+          filters:
+            branches:
+              only:
+                - main
+                - develop
