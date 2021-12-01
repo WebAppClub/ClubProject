@@ -3,7 +3,7 @@ version: 2.1
 parameters:
   pull_request:
     type: boolean
-    default: true
+    default: false
 
 jobs:
   api:
@@ -101,6 +101,7 @@ jobs:
 
 workflows:
   build:
+    unless: << pipeline.parameters.pull_request >>
     jobs:
       - api:
           filters:
@@ -114,3 +115,8 @@ workflows:
               only:
                 - main
                 - develop
+  pull_request:
+    when: << pipeline.parameters.pull_request >>
+    jobs:
+      - api
+      - web
