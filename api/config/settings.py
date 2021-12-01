@@ -7,16 +7,27 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
+def env_list(some):
+    if isinstance(some, list):
+        return some
+    else:
+        some.split(',')
+
+def env_bool(some):
+    if isinstance(some, bool):
+        return some
+    else:
+        return bool(some)
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env.get_value("SECRET_KEY", str)
+SECRET_KEY = os.getenv("SECRET_KEY", env.get_value("SECRET_KEY", str))
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DEBUG", default=False)
+DEBUG = env_bool(os.getenv("DEBUG", env.bool("DEBUG", default=False)))
 
-ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
+ALLOWED_HOSTS = env_list(os.getenv("ALLOWED_HOSTS", env.list("ALLOWED_HOSTS")))
 
 # Application definition
 
@@ -33,6 +44,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "apiv1.apps.Apiv1Config",
+    "account.apps.AcountConfig"
 ]
 
 MIDDLEWARE = [
@@ -73,12 +85,12 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": env.get_value("DB_ENGINE", str),
+        "ENGINE": os.getenv("DB_ENGINE", env.get_value("DB_ENGINE", str)),
         "NAME": "vantan_store_db",
-        "USER": env.get_value("DB_USER", str),
-        "PASSWORD": env.get_value("DB_PASSWROD", str),
-        "PORT": env.get_value("DB_PORT", str),
-        "HOST": env.get_value("DB_HOST", str),
+        "USER": os.getenv("DB_USER", env.get_value("DB_USER", str)),
+        "PASSWORD": os.getenv("DB_PASSWROD", env.get_value("DB_PASSWROD", str)),
+        "PORT": os.getenv("DB_PORT", env.get_value("DB_PORT", str)),
+        "HOST": os.getenv("DB_HOST", env.get_value("DB_HOST", str)),
     }
 }
 
