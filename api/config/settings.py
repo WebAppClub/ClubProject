@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "apiv1.apps.Apiv1Config",
-    "account.apps.AcountConfig"
+    "account.apps.AccountConfig"
 ]
 
 MIDDLEWARE = [
