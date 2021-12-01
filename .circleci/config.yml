@@ -97,15 +97,5 @@ jobs:
 workflows:
   build:
     jobs:
-      - api:
-          filters:
-            branches:
-              only:
-                - main
-                - develop
-      - web:
-          filters:
-            branches:
-              only:
-                - main
-                - develop
+      - api
+      - web
