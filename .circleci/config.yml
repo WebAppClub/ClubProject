@@ -43,23 +43,33 @@ jobs:
       - run:
           name: Wait for db.
           working_directory: api
-          command: python manage.py wait_for_db
+          command: |
+            . venv/bin/activate
+            python manage.py wait_for_db
       - run:
           name: Make migrations.
           working_directory: api
-          command: python manage.py makemigrations
+          command: |
+            . venv/bin/activate
+            python manage.py makemigrations
       - run:
           name: Migrate
           working_directory: api
-          command: python manage.py migrate
+          command: |
+            . venv/bin/activate
+            python manage.py migrate
       - run:
           name: init data in database.
           working_directory: api
-          command: sh ./config/models/init_data.sh
+          command: |
+            . venv/bin/activate
+            sh ./config/models/init_data.sh
       - run:
           name: open Server
           background: true
-          command: uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
+          command: |
+            . venv/bin/activate
+            uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
 
   web:
     docker:
@@ -68,7 +78,7 @@ jobs:
       - checkout
       - restore_cache:
           name: Restore caches.
-          key: v1-npm-deps-{{ checksum "yarn.lock" }}
+          key: v1-npm-deps-{{ checksum "./web/yarn.lock" }}
       - run:
           name: yarn install
           working_directory: web
@@ -86,7 +96,7 @@ jobs:
           name: Save caches.
           paths:
             - ./web/node_modules
-          key: v1-npm-deps-{{ checksum "yarn.lock" }}
+          key: v1-npm-deps-{{ checksum "./web/yarn.lock" }}
 
 workflows:
   build:
