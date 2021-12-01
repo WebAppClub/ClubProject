@@ -1,23 +1,61 @@
-version: 2
+version: 2.1
 jobs:
-  build:
-    machine:
-      image: circleci/classic:edge
+  api:
+    working_directory: ~/api
+    docker:
+      - image: circleci/python:3.9.6-buster
+        environment:
+          SECRET_KEY: ThisIsSpecialSecurityKey
+          DEBUG: "False"
+          ALLOWED_HOSTS: localhost,django,127.0.0.1
+          DB_USER: root
+          DB_PASSWORD: password
+          DB_PORT: 3306
+          DB_HOST: 127.0.0.1
+          DB_ENGINE: mysql.connector.django
+      - image: circleci/mysql:8.0.4
+        environment:
+          MYSQL_ROOT_PASSWORD: rootpw
+          MYSQL_DATABASE: vantan_store_db
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USER: root
+          MYSQL_PASSWORD: password
     steps:
-    # Djangoのテストを実行
       - checkout
+      - restore_cache:
+          name: Restore_cache
+          keys:
+            - v1-dependencies-{{ checksum "requirements.txt" }}
       - run:
-          name: make env file
-          command: |
-            echo DEBUG=${DEBUG} > api/.env
-            echo SECRET_KEY=${SECRET_KEY} >> api/.env
-            echo ALLOWED_HOSTS=${ALLOWED_HOSTS} >> api/.env
+          name: Install python packages.
+          working_directory: ./Docker/python
+          command: pip install -r requirements.txt
+      - save_cache:
+          name: Save caches.
+          paths:
+            - ./caches
+          key: v1-dependencies-{{ checksum "requirements.txt" }}
       - run:
-          name: docker-compose up
-          command: docker-compose up -d
+          name: Wait for db.
+          command: python manage.py wait_for_db
       - run:
-          name: docker ps
-          command: docker ps
+          name: Make migrations.
+          command: python manage.py makemigrations
       - run:
-          name: docker-compose down
-          command: docker-compose down
+          name: Migrate
+          command: python manage.py migrate
+      - run:
+          name: init data in database.
+          command: sh ./config/models/init_data.sh &&
+      - run:
+          name: open Server
+          command: uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
+workflows:
+  build_and_test:
+    jobs:
+      - api
+
+
+
+
+      
