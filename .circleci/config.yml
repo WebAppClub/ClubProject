@@ -56,6 +56,7 @@ jobs:
           command: sh ./config/models/init_data.sh
       - run:
           name: open Server
+          background: true
           command: uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768 && uwsgi --stop
 
 workflows:
