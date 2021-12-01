@@ -1,10 +1,5 @@
 version: 2.1
 
-parameters:
-  pull_request:
-    type: boolean
-    default: false
-
 jobs:
   api:
     docker:
@@ -101,22 +96,6 @@ jobs:
 
 workflows:
   build:
-    unless: << pipeline.parameters.pull_request >>
-    jobs:
-      - api:
-          filters:
-            branches:
-              only:
-                - main
-                - develop
-      - web:
-          filters:
-            branches:
-              only:
-                - main
-                - develop
-  pull_request:
-    when: << pipeline.parameters.pull_request >>
     jobs:
       - api
       - web
