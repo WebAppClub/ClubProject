@@ -52,7 +52,8 @@ jobs:
           command: python manage.py migrate
       - run:
           name: init data in database.
-          command: sh ./config/models/init_data.sh &&
+          working_directory: api
+          command: sh ./config/models/init_data.sh
       - run:
           name: open Server
           command: uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
