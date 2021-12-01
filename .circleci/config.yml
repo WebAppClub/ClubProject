@@ -31,12 +31,14 @@ jobs:
             - v1-dependencies-
       - run:
           name: Install python packages.
-          working_directory: ./Docker/python
-          command: pip install -r requirements.txt
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r ./Docker/python/requirements.txt
       - save_cache:
           name: Save caches.
           paths:
-            - ./caches
+            - ./venv
           key: v1-dependencies-{{ checksum "./Docker/python/requirements.txt" }}
       - run:
           name: Wait for db.
@@ -66,7 +68,7 @@ jobs:
       - checkout
       - restore_cache:
           name: Restore caches.
-          key: v1-npm-deps-{{ checksum "./web/node_modules/*" }}
+          key: v1-npm-deps-{{ checksum "yarn.lock" }}
       - run:
           name: yarn install
           working_directory: web
@@ -83,8 +85,8 @@ jobs:
       - save_cache:
           name: Save caches.
           paths:
-            - ./caches
-          key: v1-npm-deps-{{ checksum "./web/node_modules/*" }}
+            - ./web/node_modules
+          key: v1-npm-deps-{{ checksum "yarn.lock" }}
 
 workflows:
   build:
