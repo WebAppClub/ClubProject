@@ -24,7 +24,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore_cache
+          name: Restore caches.
           keys:
             - v1-dependencies-{{ checksum "./Docker/python/requirements.txt" }}
             # fallback to using the latest cache if no exact match is found
@@ -65,7 +65,7 @@ jobs:
     steps:
       - checkout
       - restore_cache:
-          name: Restore_cache
+          name: Restore caches.
           key: v1-npm-deps-{{ checksum "./web/yarn.lock" }}
       - run:
           name: yarn install
@@ -77,9 +77,11 @@ jobs:
           command: yarn build
 
       - save_cache:
-          key: v1-npm-deps-{{ checksum "./web/node_modules" }}
+          name: Save caches.
           paths:
             - ./web/node_module
+          key: v1-npm-deps-{{ checksum "./web/node_modules" }}
+
 workflows:
   build:
     jobs:
