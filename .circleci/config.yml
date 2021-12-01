@@ -46,6 +46,7 @@ jobs:
           command: python manage.py makemigrations
       - run:
           name: Migrate
+          working_directory: ~/api
           command: python manage.py migrate
       - run:
           name: init data in database.
