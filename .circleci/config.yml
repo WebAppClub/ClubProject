@@ -2,8 +2,8 @@ version: 2.1
 
 jobs:
   notification:
-    docker:
-      - image: circleci/classic:edge
+    machine:
+      image: circleci/classic:edge
     steps:
       - run:
           name: Notify to discord
