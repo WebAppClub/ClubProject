@@ -26,4 +26,4 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r ./Docker/python/requirements.txt
       - name: Run Python
-        run: uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
+        run: python manage.py runserver
