@@ -1,16 +1,9 @@
 version: 2.1
 
+orbs:
+  discord: teka23/discord@0.0.1
+
 jobs:
-  notification:
-    machine:
-      image: circleci/classic:edge
-    steps:
-      - run:
-          name: Notify to discord
-          command: |
-            curl -sS -XPOST -H "Content-Type: application/json" \
-            -d '{"content": ":newspaper: [Coverage report](https://'"$CIRCLE_BUILD_NUM"'-{ID}-gh.circle-artifacts.com/0/build/coverage-report/index.html)"}' \
-            $DISCORD_WEB_HOOK_URL >/dev/nul
   api:
     docker:
       - image: circleci/python:3.9.6-buster
@@ -33,6 +26,10 @@ jobs:
           MYSQL_PORT: 3306
     steps:
       - checkout
+      - discord/notify:
+          color: "4383476"
+          message: Building API...
+          webhook: DISCORD_WEB_HOOK_URL
       - restore_cache:
           name: Restore caches.
           keys:
@@ -82,6 +79,10 @@ jobs:
       - image: cimg/node:16.13.0
     steps:
       - checkout
+      - discord/notify:
+          color: "4383476"
+          message: Building Nuxt Web...
+          webhook: DISCORD_WEB_HOOK_URL
       - restore_cache:
           name: Restore caches.
           key: v1-npm-deps-{{ checksum "./web/yarn.lock" }}
@@ -107,6 +108,5 @@ jobs:
 workflows:
   build:
     jobs:
-      - notification
       - api
       - web
