@@ -101,7 +101,7 @@ workflows:
   build:
     jobs:
       - discord/approval-notification:
-          message: Now building API and Nuxt web...
-          webhook: "$DISCORD_WEB_HOOK_URL"
+          message: "Now building API and Nuxt web..."
+          webhook: ${DISCORD_WEB_HOOK_URL}
       - api
       - web
