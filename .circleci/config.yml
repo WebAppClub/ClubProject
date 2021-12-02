@@ -1,6 +1,16 @@
 version: 2.1
 
 jobs:
+  notification:
+    docker:
+      - image: circleci/classic:edge
+    steps:
+      - run:
+          name: Notify to discord
+          command: |
+            curl -sS -XPOST -H "Content-Type: application/json" \
+            -d '{"content": ":newspaper: [Coverage report](https://'"$CIRCLE_BUILD_NUM"'-{ID}-gh.circle-artifacts.com/0/build/coverage-report/index.html)"}' \
+            $DISCORD_WEB_HOOK_URL >/dev/nul
   api:
     docker:
       - image: circleci/python:3.9.6-buster
@@ -97,5 +107,6 @@ jobs:
 workflows:
   build:
     jobs:
+      - notification
       - api
       - web
