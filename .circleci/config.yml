@@ -26,10 +26,6 @@ jobs:
           MYSQL_PORT: 3306
     steps:
       - checkout
-      - discord/notify:
-          color: "4383476"
-          message: Building API...
-          webhook: $DISCORD_WEB_HOOK_URL
       - restore_cache:
           name: Restore caches.
           keys:
@@ -79,10 +75,6 @@ jobs:
       - image: cimg/node:16.13.0
     steps:
       - checkout
-      - discord/notify:
-          color: "4383476"
-          message: Building Nuxt Web...
-          webhook: DISCORD_WEB_HOOK_URL
       - restore_cache:
           name: Restore caches.
           key: v1-npm-deps-{{ checksum "./web/yarn.lock" }}
@@ -108,5 +100,8 @@ jobs:
 workflows:
   build:
     jobs:
+      - discord/approval-notification:
+          message: Now building API and Nuxt web...
+          webhook: $DISCORD_WEB_HOOK_URL
       - api
       - web
