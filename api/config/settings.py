@@ -11,7 +11,7 @@ def env_list(some):
     if isinstance(some, list):
         return some
     else:
-        some.split(',')
+        return some.split(',')
 
 def env_bool(some):
     if isinstance(some, bool):
