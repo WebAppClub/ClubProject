@@ -1,18 +1,16 @@
 [
     {
-        "model": "auth.user",
+        "model": "account.AccountUser",
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$260000$vDlzRwD4e7wRrLQWPWhfBU$mzlpMmio7MlxEdkdeKyhmu8cokUBt8z8cO9eKJmFivU=",
-            "last_login": null,
             "is_superuser": true,
             "username": "root",
-            "first_name": "",
-            "last_name": "",
             "email": "TanakaTanao@club.hekuta.com",
             "is_staff": true,
-            "is_active": true,
+            "is_deleted": true,
             "date_joined": "2021-11-27T15:29:37.212Z",
+            "last_login": null,
             "groups": [],
             "user_permissions": []
         }
