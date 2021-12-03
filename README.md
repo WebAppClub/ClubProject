@@ -47,7 +47,7 @@ pipenv run python manage.py runserver
 
 ### pipenvのインストール
 
-```
+```bash
 pip install --upgrade pip
 pip install pipenv
 ```
@@ -58,12 +58,12 @@ pyflowではmysqlの設定が必要になる。
 
 mysqlをインストールして使ってください。
 
-```
+```bash
 pyflow install
 ```
 
 ### Django起動
-```
+```bash
 cd api/
 pyflow manage.py runserver
 ```
