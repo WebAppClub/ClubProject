@@ -141,3 +141,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'vantan.store.noreply@gmail.com'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # send_mailのfromがNoneの場合自動で入る。
+EMAIL_HOST_PASSWORD = 'vantan_store_VTA_11306788_is_ok?_I_think_this_password_is_very_easy@@#@%#$%@$#5235234'
