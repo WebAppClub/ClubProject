@@ -1,8 +1,5 @@
 import os
 import environ
-from django.core.wsgi import get_wsgi_application
-
-application = get_wsgi_application()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -48,8 +45,8 @@ INSTALLED_APPS = [
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
     "rest_framework",
-    "apiv1.apps.Apiv1Config",
     "account.apps.AccountConfig",
+    "apiv1.apps.Apiv1Config",
 ]
 
 MIDDLEWARE = [
