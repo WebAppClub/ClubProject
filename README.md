@@ -2,6 +2,12 @@
 
 ## Django Admin User
 
+データベースに初期値を入れないと使いので注意してね (⋈◍＞◡＜◍)。✧♡
+
+```bash
+cd api && sh ./config/models/init_data.sh
+```
+
 ```
 email: TanakaTanao@club.hekuta.com
 password: TESTAREA
