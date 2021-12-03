@@ -2,6 +2,12 @@
 
 ## Django Admin User
 
+データベースに初期値を入れないと使いので注意してね (⋈◍＞◡＜◍)。✧♡
+
+```bash
+cd api && sh ./config/models/init_data.sh
+```
+
 ```
 email: TanakaTanao@club.hekuta.com
 password: TESTAREA
@@ -41,7 +47,7 @@ pipenv run python manage.py runserver
 
 ### pipenvのインストール
 
-```
+```bash
 pip install --upgrade pip
 pip install pipenv
 ```
@@ -52,12 +58,12 @@ pyflowではmysqlの設定が必要になる。
 
 mysqlをインストールして使ってください。
 
-```
+```bash
 pyflow install
 ```
 
 ### Django起動
-```
+```bash
 cd api/
 pyflow manage.py runserver
 ```
