@@ -1,5 +1,8 @@
 import os
 import environ
+from django.core.wsgi import get_wsgi_application
+
+application = get_wsgi_application()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -29,6 +32,8 @@ DEBUG = env_bool(os.getenv("DEBUG", env.bool("DEBUG", default=False)))
 
 ALLOWED_HOSTS = env_list(os.getenv("ALLOWED_HOSTS", env.list("ALLOWED_HOSTS")))
 
+SITE_ID = 1
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -44,7 +49,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "rest_framework",
     "apiv1.apps.Apiv1Config",
-    "account.apps.AccountConfig"
+    "account.apps.AccountConfig",
 ]
 
 MIDDLEWARE = [
@@ -140,12 +145,14 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.googlemail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'vantan.store.noreply@gmail.com'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # send_mailのfromがNoneの場合自動で入る。
-EMAIL_HOST_PASSWORD = 'vantan_store_VTA_11306788_is_ok?_I_think_this_password_is_very_easy@@#@%#$%@$#5235234'
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", env.get_value("EMAIL_HOST_PASSWORD", str))
+
+AUTH_USER_MODEL = 'account.AccountUser'
+
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

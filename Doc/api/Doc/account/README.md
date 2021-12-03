@@ -16,6 +16,7 @@
 | is_staff | BooleanField | True | True | - | 開発環境にのみ適用 |
 | account_type | PK | - | - | AccountTypeモデル | [詳しくはAccountTypeモデルの説明を参照](##AccountTypeモデル)|
 | is_deleted | BooleanField | True | True | - | アカウント削除されているかどうか |
+| is_verified | False | True | - | メール認証されているか |ny
 | created_at | - | - | - | - | 作成日時 |
 | updated_at | - | - | - | - | 更新日時 |
 
