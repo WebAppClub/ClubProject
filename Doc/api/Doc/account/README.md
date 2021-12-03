@@ -33,7 +33,7 @@
 | last_name_reading | TextField | False | False | - | 名前(カタカナ) |
 | accept_newsletter | BooleanField | True | True | - | お得情報送信許可 |
 | money | PositiveIntegerField | True | True | - | default = 0 |
-| payment | PositiveIntegerField | True | True | - | default = 0 |
+| all_paid | PositiveIntegerField | True | True | - | default = 0 |
 | tel | TextField | True | True | - | 必須ではない |
 | birthday | DateTimeField | True | True | - | - |
 | address_level1 | TextField | False | False | - | 128文字まで |
