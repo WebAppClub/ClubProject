@@ -50,28 +50,23 @@ jobs:
       - run:
           name: Wait for db.
           command: |
-            . venv/bin/activate
             python ./api/manage.py wait_for_db
       - run:
           name: Make migrations.
           command: |
-            . venv/bin/activate
             python ./api/manage.py makemigrations
       - run:
           name: Migrate
           command: |
-            . venv/bin/activate
             python ./api/manage.py migrate
       - run:
           name: init data in database.
           command: |
-            . venv/bin/activate
             cd api && sh ./config/models/init_data.sh
       - run:
           name: open Server
           background: true
           command: |
-            . venv/bin/activate
             uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
 
   web:
