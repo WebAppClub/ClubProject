@@ -39,7 +39,7 @@ class AccountUserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
-class AccountUser(AbstractBaseUser, PermissionsMixin):
+class User(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email address'), unique=True)
     is_verified = models.BooleanField(default=False, null=False, blank=True)
     username = models.TextField(max_length=32)
@@ -61,7 +61,7 @@ class AccountUser(AbstractBaseUser, PermissionsMixin):
 
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
-    
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -78,3 +78,6 @@ class AccountUser(AbstractBaseUser, PermissionsMixin):
     def email_user(self, subject, message, from_email=None, **kwargs):
         """Send an email to this user."""
         send_mail(subject, message, from_email, [self.email], **kwargs)
+
+    def __str__(self):
+        return f"{self.username}"

@@ -1,6 +1,6 @@
 [
     {
-        "model": "account.AccountUser",
+        "model": "account.User",
         "pk": 1,
         "fields": {
             "password": "pbkdf2_sha256$260000$vDlzRwD4e7wRrLQWPWhfBU$mzlpMmio7MlxEdkdeKyhmu8cokUBt8z8cO9eKJmFivU=",

@@ -37,10 +37,10 @@
 | all_paid | PositiveIntegerField | True | True | - | default = 0 |
 | tel | TextField | True | True | - | 必須ではない |
 | birthday | DateTimeField | True | True | - | - |
-| address_level1 | TextField | False | False | - | 128文字まで |
-| address_level2 | TextField | False | False | - | 128文字まで |
-| address_line1 | TextField | False | False | - | 128文字まで |
-| address_line2 | TextField | False | False | - | 128文字まで |
+| address_level_1 | TextField | False | False | - | 都道府県 128文字まで |
+| address_level_2 | TextField | False | False | - | 市区町村 128文字まで |
+| address_line_1 | TextField | False | False | - | 番地・マンション名（1行目） 128文字まで |
+| address_line_2 | TextField | False | False | - | 番地・マンション名（2行目） 128文字まで |
 | created_at | - | - | - | - | 作成日時 |
 | updated_at | - | - | - | - | 更新日時 |
 
