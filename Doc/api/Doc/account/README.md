@@ -26,21 +26,21 @@
 |   ----   |  ----  | ---- |  ---  | --- | ---- |
 | id | PrimaryKey | - | - | PK | - |
 | user_id | ForeignKey | - | - | FK | = |
-| first_name | TextField | False | False | - | 苗字 |
-| middle_name | TextField | False | False | - | ミドルネーム |
-| last_name | TextField | False | False | - | 名前 |
-| first_name_reading | TextField | False | False | - | 苗字(カタカナ) |
-| middle_name_reading | TextField | False | False | - | ミドルネーム(カタカナ) |
-| last_name_reading | TextField | False | False | - | 名前(カタカナ) |
+| first_name | CharField | False | False | - | 苗字 |
+| middle_name | CharField | False | False | - | ミドルネーム |
+| last_name | CharField | False | False | - | 名前 |
+| first_name_reading | CharField | False | False | - | 苗字(カタカナ) |
+| middle_name_reading | CharField | False | False | - | ミドルネーム(カタカナ) |
+| last_name_reading | CharField | False | False | - | 名前(カタカナ) |
 | accept_newsletter | BooleanField | True | True | - | お得情報送信許可 |
 | money | PositiveIntegerField | True | True | - | default = 0 |
 | all_paid | PositiveIntegerField | True | True | - | default = 0 |
 | tel | TextField | True | True | - | 必須ではない |
 | birthday | DateTimeField | True | True | - | - |
-| address_level_1 | TextField | False | False | - | 都道府県 128文字まで |
-| address_level_2 | TextField | False | False | - | 市区町村 128文字まで |
-| address_line_1 | TextField | False | False | - | 番地・マンション名（1行目） 128文字まで |
-| address_line_2 | TextField | False | False | - | 番地・マンション名（2行目） 128文字まで |
+| address_level_1 | TextField | False | False | - | 都道府県 |
+| address_level_2 | TextField | False | False | - | 市区町村 |
+| address_line_1 | TextField | False | False | - | 番地・マンション名(1行目) |
+| address_line_2 | TextField | False | False | - | 番地・マンション名(2行目) |
 | created_at | - | - | - | - | 作成日時 |
 | updated_at | - | - | - | - | 更新日時 |
 
