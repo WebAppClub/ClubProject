@@ -41,7 +41,7 @@ jobs:
           name: Save caches.
           key: v1-{{ .Branch }}-{{ checksum "./Docker/python/requirements.txt" }}
           paths:
-            - ./venv
+            - .venv
       - run:
           name: Wait for db.
           command: |
