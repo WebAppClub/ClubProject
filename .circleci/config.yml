@@ -50,7 +50,7 @@ jobs:
       - run:
           name: Make migrations.
           command: |
-            source .venv/bin/activate
+            source venv/bin/activate
             venv/bin/python3 ./api/manage.py makemigrations
       - run:
           name: Migrate
