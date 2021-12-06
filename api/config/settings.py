@@ -150,6 +150,6 @@ EMAIL_HOST_USER = 'vantan.store.noreply@gmail.com'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # send_mailのfromがNoneの場合自動で入る。
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", env.get_value("EMAIL_HOST_PASSWORD", str))
 
-AUTH_USER_MODEL = 'account.AccountUser'
+AUTH_USER_MODEL = 'account.User'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

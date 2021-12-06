@@ -1,3 +1,3 @@
 for filename in ./config/models/*/*.json; do
-	python manage.py loaddata $filename
+	../venv/bin/python3 manage.py loaddata $filename
 done
