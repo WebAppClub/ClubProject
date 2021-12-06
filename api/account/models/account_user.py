@@ -6,6 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 
+from .account_type import Type
 
 class AccountUserManager(BaseUserManager):
 
@@ -58,6 +59,8 @@ class User(AbstractBaseUser, PermissionsMixin):
             'Unselect this instead of deleting accounts.'
         ),
     )
+
+    account_type = models.ForeignKey(Type, on_delete=models.CASCADE)
 
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)

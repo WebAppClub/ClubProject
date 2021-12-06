@@ -19,14 +19,14 @@ class Info(models.Model):
     money = models.PositiveIntegerField(default=0, null=False, blank=True)
     all_paid = models.PositiveIntegerField(default=0, null=False, blank=True)
 
-    tel = models.TextField(default=None, null=True, blank=True)
+    tel = models.CharField(default=None, null=True, blank=True, max_length=20)
 
     birthday = models.DateField(default=None, null=True, blank=True)
 
-    address_level_1 = models.TextField(default=None, null=True, blank=True)
-    address_level_2 = models.TextField(default=None, null=True, blank=True)
-    address_line_1 = models.TextField(default=None, null=True, blank=True)
-    address_line_2 = models.TextField(default=None, null=True, blank=True)
+    address_level_1 = models.CharField(default=None, null=True, blank=True, max_length=50)
+    address_level_2 = models.CharField(default=None, null=True, blank=True, max_length=50)
+    address_line_1 = models.CharField(default=None, null=True, blank=True, max_length=50)
+    address_line_2 = models.CharField(default=None, null=True, blank=True, max_length=50)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -52,7 +52,7 @@ class Info(models.Model):
     def get_user_address(self, in_list=False) -> str or list:
         address_list = [
             self.address_level_1,
-            self.address_level_1,
+            self.address_level_2,
             self.address_line_1,
             self.address_line_2,
         ]

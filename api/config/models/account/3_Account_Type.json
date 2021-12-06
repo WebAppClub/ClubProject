@@ -1,0 +1,10 @@
+[
+    {
+        "model": "account.Type",
+        "pk": 1,
+        "fields": {
+            "name": "admin",
+            "description": "admin"
+        }
+    }
+]
