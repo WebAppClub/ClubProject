@@ -6,5 +6,4 @@ from .models import *
 # Accountモデル
 admin.site.register(User)
 admin.site.register(Info)
-admin.site.register(Type)
 admin.site.register(Permission)

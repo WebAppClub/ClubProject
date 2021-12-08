@@ -113,15 +113,7 @@ def get_user_address(self, in_list=False) -> str or list:
 ```
 
 
-## AccountTypeモデル
-
-|  Column  |  Type  | null | blank | Key | 備考 |
-|   ----   |  ----  | ---- |  ---  | --- | ---- |
-| id | PrimaryKey | - | - | PK | - |
-| name | TextField | False | False | - | 24文字まで |
-| description | TextField | False | False | - | 720文字まで |
-
-## AccountPermission
+## AccountPermissionモデル
 
 このモデルは変更される可能性が大きいです。
 
@@ -130,11 +122,11 @@ def get_user_address(self, in_list=False) -> str or list:
 |  Column  |  Type  | null | blank | Key | 備考 |
 |   ----   |  ----  | ---- |  ---  | --- | ---- |
 | id | PrimaryKey | - | - | PK | - |
+| name | TextField | False | False | - | 24文字まで |
+| description | TextField | False | False | - | 720文字まで |
 | is_can_buy | BooleanField | False | False | - | - |
 | is_can_sell | BooleanField | False | False | - | - |
 | is_can_open_admin | BooleanField | False | False | - | - |
-| is_can_create_account_type | BooleanField | False | False | - | - |
-| is_can_delete_account_type | BooleanField | False | False | - | - |
 | is_can_delete_account_permission | BooleanField | False | False | - | - |
 | is_can_create_account_permission | BooleanField | False | False | - | - |
 | is_can_delete_account | BooleanField | False | False | - | - |
