@@ -6,7 +6,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.utils import timezone
 from django.contrib.auth.base_user import BaseUserManager
 
-from .account_type import Type
+from .account_permission import Permission
 
 class AccountUserManager(BaseUserManager):
 
@@ -60,7 +60,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         ),
     )
 
-    account_type = models.ForeignKey(Type, on_delete=models.CASCADE)
+    account_permission = models.ForeignKey(Permission, on_delete=models.DO_NOTHING)
 
     last_login = models.DateTimeField(null=True, blank=True)
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
