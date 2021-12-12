@@ -1,7 +1,6 @@
 import os
 import environ
 from datetime import timedelta
-from Crypto.PublicKey import RSA
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -143,12 +142,10 @@ AUTH_USER_MODEL = 'account.User'
 
 # REST
 with open(os.path.join(BASE_DIR, "config", "keys", "private.key.pem"), "br") as f:
-    private_key = f.read()
-    PRIVATE_KEY = RSA.import_key(private_key)
+    PRIVATE_KEY = f.read()
 
 with open(os.path.join(BASE_DIR, "config", "keys", "public.key.pem"), "br") as f:
-    public_key = f.read()
-    PUBLIC_KEY = RSA.import_key(public_key)
+    PUBLIC_KEY = f.read()
 
 SIMPLE_JWT = {
     "AUTH_HEADER_TYPES": ("JWT",),

@@ -1,1 +1,4 @@
-from .account import RegisterView
+from .account import (
+    RegisterView,
+    AccountView
+)
