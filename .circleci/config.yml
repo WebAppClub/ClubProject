@@ -45,7 +45,7 @@ jobs:
       - run:
           name: Create RSA Private file
           command: |
-            openssl genrsa 1024 > ./api/config/keys/private.key.pem
+            openssl genrsa 2024 > ./api/config/keys/private.key.pem
       - run:
           name: Create RSA Public file
           command: |
