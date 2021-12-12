@@ -43,6 +43,14 @@ jobs:
           paths:
             - venv/
       - run:
+          name: Create RSA Private file
+          command: |
+            openssl genrsa 1024 > ./api/config/keys/private.key.pem
+      - run:
+          name: Create RSA Public file
+          command: |
+            openssl rsa -in ./api/config/keys/private.key.pem -pubout -out ./api/config/keys/public.key.pem
+      - run:
           name: Wait for db.
           command: |
             source venv/bin/activate
