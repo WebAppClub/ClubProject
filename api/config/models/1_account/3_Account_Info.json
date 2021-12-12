@@ -14,8 +14,8 @@
             "tel": "090-0000-0000",
             "birthday": "2005-11-30",
             "address_level_1": "愛知県",
-            "address_level_2": "〇〇市",
-            "address_line_1": "〇〇町 99-2",
+            "address_level_2": "OO市",
+            "address_line_1": "OO町 99-2",
             "address_line_2": "博多マンション 404",
             "created_at": "2021-11-27T15:29:37.212Z",
             "updated_at": "2021-11-27T15:29:37.212Z"

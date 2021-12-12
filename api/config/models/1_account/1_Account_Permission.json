@@ -1,0 +1,30 @@
+[
+    {
+        "model": "account.Permission",
+        "pk": 1,
+        "fields": {
+            "name": "normal",
+            "description": "普通の人",
+            "is_can_open_admin": false,
+            "is_can_buy": true,
+            "is_can_sell": false,
+            "is_can_create_account_permission": false,
+            "is_can_delete_account_permission": false,
+            "is_can_delete_account": false
+        }
+    },
+    {
+        "model": "account.Permission",
+        "pk": 2,
+        "fields": {
+            "name": "admin",
+            "description": "admin",
+            "is_can_open_admin": true,
+            "is_can_buy": true,
+            "is_can_sell": true,
+            "is_can_create_account_permission": true,
+            "is_can_delete_account_permission": true,
+            "is_can_delete_account": true
+        }
+    }
+]

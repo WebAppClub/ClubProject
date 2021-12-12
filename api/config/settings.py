@@ -1,7 +1,7 @@
 import os
 import environ
+from datetime import timedelta
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 env = environ.Env()
@@ -18,13 +18,9 @@ def env_bool(some):
         return some
     else:
         return bool(some)
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv("SECRET_KEY", env.get_value("SECRET_KEY", str))
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env_bool(os.getenv("DEBUG", env.bool("DEBUG", default=False)))
 
 ALLOWED_HOSTS = env_list(os.getenv("ALLOWED_HOSTS", env.list("ALLOWED_HOSTS")))
@@ -41,10 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django_cleanup.apps.CleanupConfig",
+    "rest_framework",
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",
     "corsheaders",
-    "rest_framework",
     "apiv1.apps.Apiv1Config",
     "account.apps.AccountConfig",
 ]
@@ -83,8 +79,6 @@ WSGI_APPLICATION = "config.wsgi.application"
 
 
 # Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": os.getenv("DB_ENGINE", env.get_value("DB_ENGINE", str)),
@@ -98,8 +92,6 @@ DATABASES = {
 
 
 # Password validation
-# https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -117,8 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = "ja"
 
 TIME_ZONE = "Asia/Tokyo"
@@ -131,17 +121,13 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-# Default primary key field type
-# https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
+# Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.googlemail.com'
 EMAIL_USE_TLS = True
@@ -150,6 +136,33 @@ EMAIL_HOST_USER = 'vantan.store.noreply@gmail.com'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER  # send_mailのfromがNoneの場合自動で入る。
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD", env.get_value("EMAIL_HOST_PASSWORD", str))
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 AUTH_USER_MODEL = 'account.User'
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+# REST
+with open(os.path.join(BASE_DIR, "config", "keys", "private.key.pem"), "br") as f:
+    PRIVATE_KEY = f.read()
+
+with open(os.path.join(BASE_DIR, "config", "keys", "public.key.pem"), "br") as f:
+    PUBLIC_KEY = f.read()
+
+SIMPLE_JWT = {
+    "AUTH_HEADER_TYPES": ("JWT",),
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=10),
+    "REFRESH_TOKEN_LIFETIME": timedelta(hours=3),
+    "ROTATE_REFRESH_TOKENS": True,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "ALGORITHM": "RS256",
+    "SIGNING_KEY": PRIVATE_KEY,
+    "VERIFYING_KEY": PUBLIC_KEY,
+}
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ]
+}
