@@ -60,6 +60,7 @@ jobs:
       - run:
           name: init data in database.
           command: |
+            set -e
             source venv/bin/activate
             cd api && sh ./config/models/init_data_for_ci.sh
       - run:
