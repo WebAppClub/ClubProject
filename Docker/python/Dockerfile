@@ -1,4 +1,5 @@
 FROM python:3.9-slim-buster
+RUN sed -i '/jessie-updates/d' /etc/apt/sources.list
 RUN apt-get update && \
     apt-get -y install gcc libmariadb-dev
 ENV PYTHONUNBUFFERED 1
