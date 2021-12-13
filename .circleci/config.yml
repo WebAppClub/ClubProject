@@ -70,7 +70,7 @@ jobs:
           command: |
             set -e
             source venv/bin/activate
-            python manage.py loaddata /*/fixtures/*
+            pwd
       - run:
           name: open Server
           background: true
