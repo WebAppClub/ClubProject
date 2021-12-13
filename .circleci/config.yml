@@ -77,7 +77,7 @@ jobs:
             ../venv/bin/python3 manage.py loaddata ./*/fixtures/*.json
       - run:
           name: open Server
-          working_directory: ..
+          working_directory: ./api
           background: true
           command: |
             source ../venv/bin/activate
@@ -89,10 +89,9 @@ jobs:
             source ../venv/bin/activate
             ../venv/bin/python3 manage.py test
       - store_test_results:
-          path: python-test-results
+        path: test-results
       - store_artifacts:
-          path: python-test-results
-          destination: tr1
+          path: test-reports
 
   web:
     docker:
