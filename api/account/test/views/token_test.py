@@ -53,7 +53,7 @@ class TestToken(APITestCase):
             params_register,
             format='json'
         )
-        print(response.data)
+
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_normal_login(self):
@@ -67,7 +67,7 @@ class TestToken(APITestCase):
             params_login,
             format='json'
         )
-        print(response.data)
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_force_login(self):
@@ -88,5 +88,5 @@ class TestToken(APITestCase):
             params,
             format='json'
         )
-        print(response.data)
+
         self.assertEqual(response.status_code, status.HTTP_200_OK)

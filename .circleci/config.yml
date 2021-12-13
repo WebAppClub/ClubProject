@@ -70,13 +70,16 @@ jobs:
           command: |
             set -e
             source venv/bin/activate
-            cd api && sh ./config/models/init_data_for_ci.sh
+            python manage.py loaddata api/*/fixtures/*
       - run:
           name: open Server
           background: true
           command: |
             source venv/bin/activate
             uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
+      - run:
+          name: test
+          command: python3 manage.py test --settings=config.settings.circleci_test
 
   web:
     docker:
