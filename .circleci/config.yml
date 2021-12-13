@@ -89,7 +89,7 @@ jobs:
             source ../venv/bin/activate
             ../venv/bin/python3 manage.py test
       - store_test_results:
-        path: test-results
+          path: test-results
       - store_artifacts:
           path: test-reports
 
