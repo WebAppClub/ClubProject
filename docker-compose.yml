@@ -4,7 +4,6 @@ services:
   db:
     container_name: vantan_store_db
     image: mysql:8.0
-    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_DATABASE: vantan_store_db
       MYSQL_USER: user
@@ -15,7 +14,7 @@ services:
       - SYS_NICE
     volumes:
       - ./Docker/sql/mysql:/var/lib/mysql
-      - ./Docker/sql/sql:/docker-entrypoint-initdb.d
+      - ./Docker/sql/init:/docker-entrypoint-initdb.d
       - ./Docker/sql/sqlcnf/:/etc/mysql/conf.d
     ports:
       - 3306:3306

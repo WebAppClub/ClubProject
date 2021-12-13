@@ -33,10 +33,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         return attrs
 
     def create(self, validated_data):
+        JST = datetime.timezone(datetime.timedelta(hours=+9), 'JST')
         user = User.objects.create(
             email=validated_data['email'],
             username=validated_data['username'],
-            last_login=datetime.datetime.now(),
+            last_login=datetime.datetime.now(JST),
             account_permission=Permission.objects.get(pk=1),
             is_deleted=False,
             is_verified=False

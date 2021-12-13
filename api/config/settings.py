@@ -87,6 +87,9 @@ DATABASES = {
         "PASSWORD": os.getenv("DB_PASSWORD", env.get_value("DB_PASSWORD", str)),
         "PORT": os.getenv("DB_PORT", env.get_value("DB_PORT", str)),
         "HOST": os.getenv("DB_HOST", env.get_value("DB_HOST", str)),
+        'TEST': {
+            'NAME': "test_vantan_store_db",
+        },
     }
 }
 
@@ -158,11 +161,18 @@ SIMPLE_JWT = {
     "VERIFYING_KEY": PUBLIC_KEY,
 }
 
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny'
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+    'TEST_REQUEST_DEFAULT_FORMAT': 'json',
+    'TEST_REQUEST_RENDERER_CLASSES': [
+        'rest_framework.renderers.MultiPartRenderer',
+        'rest_framework.renderers.JSONRenderer',
+        'rest_framework.renderers.TemplateHTMLRenderer'
     ]
 }
