@@ -70,7 +70,7 @@ jobs:
           command: |
             set -e
             source venv/bin/activate
-            pwd
+            python manage.py loaddata ./api/*/fixtures/*.json
       - run:
           name: open Server
           background: true
@@ -79,7 +79,9 @@ jobs:
             uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
       - run:
           name: test
-          command: python3 manage.py test --settings=config.settings.circleci_test
+          command: |
+            source venv/bin/activate
+            venv/bin/python3 ./api/manage.py test --settings=config.settings.circleci_test --verbosity 2
 
   web:
     docker:
