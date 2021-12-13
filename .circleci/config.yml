@@ -11,8 +11,8 @@ jobs:
           SECRET_KEY: ThisIsSpecialSecurityKey
           DEBUG: "False"
           ALLOWED_HOSTS: localhost,django,127.0.0.1
-          DB_USER: user
-          DB_PASSWORD: password
+          DB_USER: root
+          DB_PASSWORD: P@ssw0rd
           DB_PORT: 3306
           DB_HOST: 127.0.0.1
           DB_ENGINE: mysql.connector.django
@@ -21,8 +21,6 @@ jobs:
           MYSQL_ROOT_PASSWORD: P@ssw0rd
           MYSQL_DATABASE: vantan_store_db
           MYSQL_HOST: 127.0.0.1
-          MYSQL_USER: user
-          MYSQL_PASSWORD: password
           MYSQL_PORT: 3306
     steps:
       - checkout
