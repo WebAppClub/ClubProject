@@ -32,7 +32,6 @@ jobs:
             - v1-python-cache-{{ checksum "./Docker/python/requirements.txt" }}
       - run:
           name: Install dependencies.
-          working_directory: ./api
           command: |
             python3 -m venv venv
             source venv/bin/activate
@@ -40,7 +39,6 @@ jobs:
             venv/bin/python3 -m pip install -r ./Docker/python/requirements.txt
       - save_cache:
           name: Save caches.
-          working_directory: ..
           key: v1-python-cache-{{ checksum "./Docker/python/requirements.txt" }}
           paths:
             - venv/
