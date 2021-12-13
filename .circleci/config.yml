@@ -40,6 +40,7 @@ jobs:
             venv/bin/python3 -m pip install -r ./Docker/python/requirements.txt
       - save_cache:
           name: Save caches.
+          working_directory: ..
           key: v1-python-cache-{{ checksum "./Docker/python/requirements.txt" }}
           paths:
             - venv/
@@ -59,25 +60,23 @@ jobs:
             venv/bin/python3 manage.py wait_for_db
       - run:
           name: Make migrations.
-          working_directory: ./api
           command: |
             source venv/bin/activate
             venv/bin/python3 manage.py makemigrations
       - run:
           name: Migrate
-          working_directory: ./api
           command: |
             source venv/bin/activate
             venv/bin/python3 manage.py migrate
       - run:
           name: init data in database.
-          working_directory: ./api
           command: |
             set -e
             source venv/bin/activate
             venv/bin/python3 manage.py loaddata ./*/fixtures/*.json
       - run:
           name: open Server
+          working_directory: ..
           background: true
           command: |
             source venv/bin/activate
@@ -89,6 +88,7 @@ jobs:
             source venv/bin/activate
             venv/bin/python3 manage.py test
       - store_test_results:
+          working_directory: ..
           path: python-test-results
       - store_artifacts:
           path: python-test-results
