@@ -32,27 +32,27 @@ jobs:
             - v1-python-cache-{{ checksum "./Docker/python/requirements.txt" }}
       - run:
           name: Install dependencies.
+          working_directory: ./api
           command: |
             python3 -m venv venv
             source venv/bin/activate
             venv/bin/python3 -m pip install --upgrade pip
-            venv/bin/python3 -m pip install -r ./Docker/python/requirements.txt
+            venv/bin/python3 -m pip install -r ../Docker/python/requirements.txt
       - save_cache:
           name: Save caches.
-          key: v1-python-cache-{{ checksum "./Docker/python/requirements.txt" }}
+          key: v1-python-cache-{{ checksum "../Docker/python/requirements.txt" }}
           paths:
             - venv/
       - run:
           name: Create RSA Private file
           command: |
-            openssl genrsa 2024 > config/keys/private.key.pem
+            openssl genrsa 2024 > ./config/keys/private.key.pem
       - run:
           name: Create RSA Public file
           command: |
-            openssl rsa -in config/keys/private.key.pem -pubout -out config/keys/public.key.pem
+            openssl rsa -in ./config/keys/private.key.pem -pubout -out ./config/keys/public.key.pem
       - run:
           name: Wait for db.
-          working_directory: ./api
           command: |
             source venv/bin/activate
             venv/bin/python3 manage.py wait_for_db
@@ -86,7 +86,6 @@ jobs:
             source venv/bin/activate
             venv/bin/python3 manage.py test
       - store_test_results:
-          working_directory: ..
           path: python-test-results
       - store_artifacts:
           path: python-test-results
