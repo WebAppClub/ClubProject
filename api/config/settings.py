@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     "account.apps.AccountConfig",
 ]
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
