@@ -70,7 +70,7 @@ jobs:
           command: |
             set -e
             source venv/bin/activate
-            python manage.py loaddata ./api/*/fixtures/*.json
+            venv/bin/python3 ./api/manage.py loaddata ./api/*/fixtures/*.json
       - run:
           name: open Server
           background: true
