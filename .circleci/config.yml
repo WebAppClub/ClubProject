@@ -32,6 +32,7 @@ jobs:
             - v1-python-cache-{{ checksum "./Docker/python/requirements.txt" }}
       - run:
           name: Install dependencies.
+          working_directory: ./api
           command: |
             python3 -m venv venv
             source venv/bin/activate
@@ -45,32 +46,36 @@ jobs:
       - run:
           name: Create RSA Private file
           command: |
-            openssl genrsa 2024 > ./api/config/keys/private.key.pem
+            openssl genrsa 2024 > config/keys/private.key.pem
       - run:
           name: Create RSA Public file
           command: |
-            openssl rsa -in ./api/config/keys/private.key.pem -pubout -out ./api/config/keys/public.key.pem
+            openssl rsa -in config/keys/private.key.pem -pubout -out config/keys/public.key.pem
       - run:
           name: Wait for db.
+          working_directory: ./api
           command: |
             source venv/bin/activate
-            venv/bin/python3 ./api/manage.py wait_for_db
+            venv/bin/python3 manage.py wait_for_db
       - run:
           name: Make migrations.
+          working_directory: ./api
           command: |
             source venv/bin/activate
-            venv/bin/python3 ./api/manage.py makemigrations
+            venv/bin/python3 manage.py makemigrations
       - run:
           name: Migrate
+          working_directory: ./api
           command: |
             source venv/bin/activate
-            venv/bin/python3 ./api/manage.py migrate
+            venv/bin/python3 manage.py migrate
       - run:
           name: init data in database.
+          working_directory: ./api
           command: |
             set -e
             source venv/bin/activate
-            venv/bin/python3 ./api/manage.py loaddata ./api/*/fixtures/*.json
+            venv/bin/python3 manage.py loaddata ./*/fixtures/*.json
       - run:
           name: open Server
           background: true
@@ -79,9 +84,15 @@ jobs:
             uwsgi --socket :8000 --http :8001  --module config.wsgi --py-autoreload 1 -b 32768
       - run:
           name: test
+          working_directory: ./api
           command: |
             source venv/bin/activate
-            venv/bin/python3 ./api/manage.py test
+            venv/bin/python3 manage.py test
+      - store_test_results:
+          path: python-test-results
+      - store_artifacts:
+          path: python-test-results
+          destination: tr1
 
   web:
     docker:
