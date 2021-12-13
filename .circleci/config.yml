@@ -28,11 +28,11 @@ jobs:
       - checkout
       - restore_cache:
           name: Restore caches.
+          working_directory: ./api
           keys:
-            - v1-python-cache-{{ checksum "./Docker/python/requirements.txt" }}
+            - v1-python-cache-{{ checksum "../Docker/python/requirements.txt" }}
       - run:
           name: Install dependencies.
-          working_directory: ./api
           command: |
             python3 -m venv venv
             source venv/bin/activate
