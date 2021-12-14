@@ -17,7 +17,7 @@ def env_bool(some):
     if isinstance(some, bool):
         return some
     else:
-        return bool(some)
+        return not bool(some)
 
 SECRET_KEY = os.getenv("SECRET_KEY", env.get_value("SECRET_KEY", str))
 
