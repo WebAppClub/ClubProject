@@ -5,7 +5,7 @@
 データベースに初期値を入れないと使いので注意してね (⋈◍＞◡＜◍)。✧♡
 
 ```bash
-cd api && sh ./config/models/init_data.sh
+python manage.py loaddata */fixtures/*
 ```
 
 ```
